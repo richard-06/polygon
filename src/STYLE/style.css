@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Monoton&family=Quicksand:wght@500;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Blinker:wght@100;300;400;600&family=Geist+Mono:wght@100..900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+}
+:root {
+  --primary-color: #3498db; /* Define your color here */
+}
+
+.app {
+  display: flex; /* Enable Flexbox */
+  height: 100vh; /* Full viewport height */
+  font-family: sans-serif;
+
+  font-family: "Geist Mono", monospace;
+  font-weight: 300;
+}
+
+.navBar {
+  width: 5%;
+  color: aliceblue;
+  background-color: var(--primary-color);
+}
+
+.main {
+  margin: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  flex: 1;
+  height: 97%;
+
+  opacity: 0.9;
+}
+
+h2 {
+  height: 5%;
+  opacity: 0.9;
+  font-size: 2rem;
+  background-color: rgb(238, 238, 238);
+}

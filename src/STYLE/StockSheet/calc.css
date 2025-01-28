@@ -1,0 +1,73 @@
+.side-bar {
+  margin-left: 15px;
+  flex: 2.5;
+  text-align: center;
+  border: solid 1px #ccc;
+  border-radius: 8px 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  height: 100%;
+  flex-direction: column;
+}
+.side-nav-top {
+  flex: 4.8;
+  width: 100%;
+  /* width: 265px; */
+  /* height: 180px; */
+
+  background-color: antiquewhite;
+}
+.calc {
+  flex: 14;
+  /* background-color: red; */
+  border-radius: 0 0 8px 8px;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px #ccc;
+  width: 100%;
+}
+
+.result {
+  flex: 1.5;
+  display: flex;
+  align-items: flex-end;
+  justify-content: end;
+  background-color: rgb(255, 255, 255);
+  border: solid 0.1px;
+  padding: 10px;
+  font-size: 2rem;
+  letter-spacing: 4px;
+}
+
+.container {
+  flex: 9;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%; /* Three columns: fixed, fixed, flexible */
+  /* grid-template-rows: 100px auto; Two rows: fixed, flexible */
+
+  gap: 0; /* Space between grid items */
+}
+
+.custom-color {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.test {
+  font-size: 1.5rem;
+  border: solid 0px;
+  display: grid;
+
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.calc-btn {
+  flex: 1;
+  background-color: red;
+  text-align: center;
+  align-items: center;
+}
