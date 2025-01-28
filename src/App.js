@@ -1,6 +1,8 @@
 import { Main } from "./Main";
 import SpreadsheetReader from "./DataHandling/SpreadSheetReader";
 import React, { useEffect, useRef, useState } from "react";
+import "./STYLE/StockSheet/calc.css";
+import { Calc } from "./Components/Calc";
 
 export default function App() {
   return (
@@ -8,6 +10,7 @@ export default function App() {
       <NavBar />
       <Main />
 
+      {/* <Calculator /> */}
       {/* <ScrollableList /> */}
       {/* <SpreadsheetReader /> */}
     </div>

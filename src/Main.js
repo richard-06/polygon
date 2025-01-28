@@ -29,9 +29,9 @@ export function Main() {
 function SideBar() {
   return (
     <div className="side-bar">
-      <div className="side-nav-top"></div>
+      <div className="side-nav-top">d</div>
 
-      <div className="calc">e</div>
+      <Calc />
     </div>
   );
 }

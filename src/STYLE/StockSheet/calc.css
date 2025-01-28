@@ -1,52 +1,80 @@
-.calc {
-  flex: 14;
-  background-color: red;
-  border-radius: 0 0 8px 8px;
-  display: flex;
-  flex-direction: column;
-  border: solid 1px #ccc;
+.calc-cont {
+  flex: 4;
   width: 100%;
 }
 
-.result {
-  flex: 1.5;
+.calc-row {
   display: flex;
-  align-items: flex-end;
-  justify-content: end;
-  background-color: rgb(255, 255, 255);
-  border: solid 0.1px;
-  padding: 10px;
+  height: 100%;
+  flex-direction: column;
+  border: solid 1px #ccc;
+  border-radius: 10px;
+  /* padding: 1%; */
+}
+
+.result-bar {
+  flex: 1;
+  /* border-bottom: solid 1px #ccc; */
+  margin-bottom: 1%;
+
+  display: flex;
+  flex-direction: column;
+  /* justify-content: end; Horizontal alignment */
+  /* align-items: flex-end; */
+  justify-content: space-between;
+  /* padding: 0 20px; */
+  font-size: 3rem;
+  letter-spacing: -0.2rem;
+  font-family: "Courier New", monospace;
+}
+
+.result-hist {
+  padding-top: 10px;
+  padding-left: 20px;
   font-size: 2rem;
-  letter-spacing: 4px;
+  color: rgb(129, 129, 129);
+  text-align: start;
+}
+.result-val {
+  /* background-color: aqua; */
+  text-align: end;
+  padding-right: 20px;
+  font-weight: 60;
+  overflow-x: auto; /* Enable horizontal scrolling if content overflows */
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+}
+.row-buttons {
+  padding: 0 1%;
+  flex: 0.6;
+  /* border: solid 1px; */
+  display: flex;
 }
 
-.container {
-  flex: 9;
-  display: grid;
-  grid-template-columns: 25% 25% 25% 25%; /* Three columns: fixed, fixed, flexible */
-  /* grid-template-rows: 100px auto; Two rows: fixed, flexible */
+.calc-button {
+  flex: 1;
+  /* border: solid 1px; */
+  background-color: rgb(241, 241, 241);
+  margin: 3% 3%;
 
-  gap: 0; /* Space between grid items */
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: rgb(98, 98, 98);
 }
+.calc-button-enter {
+  flex: 2;
+  /* border: solid 1px #ccc; */
+  margin: 10px;
 
-.custom-color {
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 600;
   background-color: var(--primary-color);
   color: white;
-  font-size: 2rem;
-  font-weight: 700;
-}
-.test {
-  font-size: 1.5rem;
-  border: solid 0px;
-  display: grid;
-
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-}
-
-.calc-btn {
-  flex: 1;
-  background-color: red;
-  text-align: center;
-  align-items: center;
 }
