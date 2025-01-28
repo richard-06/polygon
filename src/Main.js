@@ -3,10 +3,11 @@ import "./STYLE/StockSheet/searchBar.css";
 import "./STYLE/StockSheet/itemList.css";
 import "./STYLE/StockSheet/calc.css";
 import "./STYLE/StockSheet/stockBody.css";
+import "./STYLE/StockSheet/sideBar.css";
 import { SearchBar } from "./Components/SearchBar";
 import { ItemList } from "./Components/ItemList";
 import { product } from "./DataHandling/data";
-import { Calc } from "./Calc";
+import { Calc } from "./Components/Calc";
 import SpreadsheetReader from "./DataHandling/SpreadSheetReader";
 
 export function Main() {
@@ -30,7 +31,7 @@ function SideBar() {
     <div className="side-bar">
       <div className="side-nav-top"></div>
 
-      <Calc />
+      <div className="calc">e</div>
     </div>
   );
 }

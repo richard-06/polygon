@@ -1,27 +1,6 @@
-.side-bar {
-  margin-left: 15px;
-  flex: 2.5;
-  text-align: center;
-  border: solid 1px #ccc;
-  border-radius: 8px 8px;
-
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  height: 100%;
-  flex-direction: column;
-}
-.side-nav-top {
-  flex: 4.8;
-  width: 100%;
-  /* width: 265px; */
-  /* height: 180px; */
-
-  background-color: antiquewhite;
-}
 .calc {
   flex: 14;
-  /* background-color: red; */
+  background-color: red;
   border-radius: 0 0 8px 8px;
   display: flex;
   flex-direction: column;
