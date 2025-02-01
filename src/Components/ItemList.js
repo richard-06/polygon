@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-export function ItemList({ product, selectedItem }) {
+export function ItemList({ product, selectedItem, setSelectedItem }) {
   let temp = true;
+  const [ind, setIndex] = useState(0);
 
   const values = product.map((item) => item.Name);
 
@@ -19,15 +20,22 @@ export function ItemList({ product, selectedItem }) {
     // Scroll to the matching item
 
     if (index !== -1) {
-      itemRefs.current[index].current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      console.log(ind, " previous Index");
+
+      console.log(index, " Current index");
+
+      if (Math.abs(ind - index) > 10) {
+        itemRefs.current[index].current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+        setIndex(index);
+      }
     }
   }
 
   useEffect(() => {
-    handleSearch();
+    if (selectedItem != "") handleSearch();
   }, [selectedItem]);
 
   return (
@@ -46,23 +54,25 @@ export function ItemList({ product, selectedItem }) {
             temp = !temp;
             return (
               <li
+                onClick={() => setSelectedItem(item.Name)}
                 ref={itemRefs.current[i]}
                 key={i}
-                className={`custom-list ${temp ? "color-adder" : ""} ${
+                className={`custom-list ${temp ? "color-adder" : ""}
+                 
+                ${
                   selectedItem &&
-                  item.Name.toLowerCase().includes(selectedItem.toLowerCase())
+                  item.Name.toLowerCase() === selectedItem.toLowerCase()
                     ? "selected-list-item"
                     : ""
                 }`}
               >
                 <p className="name">{item.Name}</p>
-                <p className="type">{item.type ? item.type : "Sprit"}</p>
+                <p className="type">
+                  {item["Spirit Type"] ? item["Spirit Type"] : "Sprit"}
+                </p>
                 <p className="unit">Bottle</p>
                 <p className="quantity">
-                  <input
-                    className="quantity-input"
-                    value={item.quantity ? item.quantity : "-"}
-                  />
+                  {item.quantity ? item.quantity : "99"}
                 </p>
               </li>
             );

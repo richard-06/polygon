@@ -18,20 +18,27 @@ export function Main() {
       <h2> Stock-Take {selectedItem}</h2>
       <SearchBar data={product} setSelectedItem={setSelectedItem} />
       <div className="stock-body">
-        <ItemList product={product} selectedItem={selectedItem} />
+        <ItemList
+          product={product}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+        />
 
-        <SideBar />
+        <SideBar
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+        />
       </div>
     </div>
   );
 }
 
-function SideBar() {
+function SideBar({ selectedItem, setSelectedItem }) {
   return (
     <div className="side-bar">
       <div className="side-nav-top">d</div>
 
-      <Calc />
+      <Calc selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
     </div>
   );
 }

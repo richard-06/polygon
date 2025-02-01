@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { product } from "../DataHandling/data";
 
-export function Calc() {
+export function Calc({ selectedItem, setSelectedItem }) {
   const [val, setVal] = useState("");
   const [hist, setHist] = useState("");
 
@@ -50,9 +51,39 @@ export function Calc() {
         <div className="row-buttons" style={{ paddingBottom: "1%" }}>
           <CalcButton val="0" setVal={setVal} />
           <CalcButtonPlus val="." setVal={setVal} />
-          <div className="calc-button-enter">ENTER</div>
+          <CalcEnter
+            val={val}
+            selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
+            setVal={setVal}
+            setHist={setHist}
+          />
         </div>
       </div>
+    </div>
+  );
+}
+
+function CalcEnter({ selectedItem, setSelectedItem, val, setVal, setHist }) {
+  function handleEnter() {
+    let handle = selectedItem && Number(val) && "run";
+    if (handle == "run") {
+      console.log("running");
+      const index = product.findIndex((item) => item.Name === selectedItem);
+      product[index].quantity = Number(val);
+      setSelectedItem("");
+      setVal("");
+      setHist("");
+    }
+  }
+  return (
+    <div
+      onClick={handleEnter}
+      className={`calc-button-enter ${
+        selectedItem && Number(val) ? "calc-button-enter-active" : ""
+      }`}
+    >
+      ENTER
     </div>
   );
 }

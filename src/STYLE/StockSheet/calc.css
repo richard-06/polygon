@@ -1,6 +1,6 @@
 .calc-cont {
   flex: 4;
-  width: 100%;
+  width: 270px;
 }
 
 .calc-row {
@@ -75,6 +75,13 @@
   align-items: center;
   font-size: 1.5rem;
   font-weight: 600;
+
+  /* background-color: rgb(241, 241, 241);
+  color: rgb(98, 98, 98);
+  opacity: 0.5; */
+}
+
+.calc-button-enter-active {
   background-color: var(--primary-color);
   color: white;
 }
