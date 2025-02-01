@@ -1,18 +1,34 @@
 import React, { useEffect, useRef, useState } from "react";
+import { fetchData } from "../DataHandling/data";
 
 export function ItemList({ product, selectedItem, setSelectedItem }) {
   let temp = true;
   const [ind, setIndex] = useState(0);
 
-  const values = product.map((item) => item.Name);
+  console.log(product, "From Itemlist");
+
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      const result = await fetchData(); // Wait for fetchData to complete
+      setData(result || []); // Ensure result is always an array
+    };
+
+    getData();
+  }, []);
+
+  const values = data
+    .map((item) => item?.Name) // Use optional chaining to prevent errors
+    .filter((name) => name !== undefined); // Remove undefined values
 
   const itemRefs = useRef([]);
   itemRefs.current = values.map(
     (_, i) => itemRefs.current[i] || React.createRef()
   );
 
+  // Make sure selectedItem exists and then call toLowerCase
   const index = values.findIndex((item) =>
-    item.toLowerCase().includes(selectedItem.toLowerCase())
+    item?.toLowerCase().includes(selectedItem?.toLowerCase() || "")
   );
 
   function handleSearch() {
@@ -35,7 +51,7 @@ export function ItemList({ product, selectedItem, setSelectedItem }) {
   }
 
   useEffect(() => {
-    if (selectedItem != "") handleSearch();
+    if (selectedItem !== "") handleSearch();
   }, [selectedItem]);
 
   return (
@@ -49,8 +65,8 @@ export function ItemList({ product, selectedItem, setSelectedItem }) {
       </div>
 
       <div className="item-list">
-        <ul class="content-list ">
-          {product.map((item, i) => {
+        <ul className="content-list">
+          {data.map((item, i) => {
             temp = !temp;
             return (
               <li
@@ -61,7 +77,7 @@ export function ItemList({ product, selectedItem, setSelectedItem }) {
                  
                 ${
                   selectedItem &&
-                  item.Name.toLowerCase() === selectedItem.toLowerCase()
+                  item?.Name?.toLowerCase() === selectedItem?.toLowerCase()
                     ? "selected-list-item"
                     : ""
                 }`}
@@ -70,7 +86,7 @@ export function ItemList({ product, selectedItem, setSelectedItem }) {
                   {selectedItem == item.Name ? item.Name : shortener(item.Name)}
                 </p>
                 <p className="type">
-                  {item["Spirit Type"] ? item["Spirit Type"] : "Sprit"}
+                  {item["Spirit Type"] ? item["Spirit Type"] : "Spirit"}
                 </p>
                 <p className="unit">Bottle</p>
                 <p className="quantity">
@@ -86,7 +102,7 @@ export function ItemList({ product, selectedItem, setSelectedItem }) {
 }
 
 function shortener(str) {
-  return str.length > 25 ? str.slice(0, 22) + "..." : str;
+  return str?.length > 25 ? str.slice(0, 22) + "..." : str;
 }
 
 function ButtonsItemList() {

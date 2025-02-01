@@ -1,3 +1,33 @@
+// import { async } from "@firebase/util";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import app from "../firebase";
+
+export const fetchData = async () => {
+  const existingData = localStorage.getItem("usersData");
+
+  if (existingData) {
+    console.log("Using data from localStorage:", JSON.parse(existingData));
+    return JSON.parse(existingData);
+  }
+
+  const db = getFirestore(app);
+  let temp = [];
+
+  try {
+    const querySnapshot = await getDocs(collection(db, "users"));
+    querySnapshot.forEach((doc) => {
+      temp.push(doc.data());
+    });
+
+    localStorage.setItem("usersData", JSON.stringify(temp));
+    console.log("Fetched from Firebase & stored in localStorage:", temp);
+    return temp;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return ["error fetching data"];
+  }
+};
+
 export const product = [
   {
     Name: "Olmeca Silver",
@@ -465,29 +495,3 @@ export const product = [
     "On Menu": "On",
   },
 ];
-
-//[   { name: "Beefeater", type: "Gin", quantity: 3 },
-//   { name: "Tranquray 10", type: "Gin", quantity: 10 },
-//   { name: "Tranquray 0%", type: "Gin", quantity: 2 },
-//   { name: "Sip Smith", type: "Gin", quantity: 2.3 },
-//   { name: "Bombay", type: "Gin", quantity: 2.5 },
-//   { name: "Hendricks", type: "Gin", quantity: 2.4 },
-//   { name: "Buffalo Trace", type: "Whisky", quantity: 1.3 },
-//   { name: "Jack Daniels", type: "Whisky", quantity: 13 },
-//   { name: "Black label", type: "Whisky", quantity: 1.5 },
-//   { name: "Macallan 12Years", type: "Whisky", quantity: 1.3 },
-//   { name: "Jameson Irish", type: "Whisky", quantity: 1 },
-//   { name: "Balvinine", type: "Whisky", quantity: 1 },
-//   { name: "Ashai", type: "gin", quantity: 11 },
-//   { name: "Neckoil", type: "Keg", quantity: 10 },
-//   { name: "Luckysaints", type: "Keg", quantity: 6 },
-//   { name: "Estrella galicia", type: "Keg", quantity: 5 },
-//   { name: "Camden hells", type: "Keg", quantity: 2 },
-//   { name: "Peckham Session", type: "Keg", quantity: 6 },
-//   { name: "Guiness", type: "Keg", quantity: 6 },
-//   { name: "Smirnoff", type: "Vodka", quantity: 1 },
-//   { name: "Grey Goose", type: "Vodka", quantity: 12 },
-//   { name: "Absolute", type: "Vodka", quantity: 13 },
-//   { name: "Coke", type: "Solf Drinks", quantity: 142 },
-//   { name: "Diet Coke", type: "Soft Drinks", quantity: 340 },
-// ];

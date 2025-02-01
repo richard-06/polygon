@@ -3,12 +3,14 @@ import SpreadsheetReader from "./DataHandling/SpreadSheetReader";
 import React, { useEffect, useRef, useState } from "react";
 import "./STYLE/StockSheet/calc.css";
 import { Calc } from "./Components/Calc";
+import TestLanding from "./test-landing";
 
 export default function App() {
   return (
     <div className="app">
       <NavBar />
       <Main />
+      {/* <TestLanding /> */}
 
       {/* <Calculator /> */}
       {/* <ScrollableList /> */}

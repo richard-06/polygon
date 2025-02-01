@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { product } from "../DataHandling/data";
+import { fetchData, product } from "../DataHandling/data";
 
 export function Calc({ selectedItem, setSelectedItem }) {
   const [val, setVal] = useState("");
@@ -69,8 +69,8 @@ function CalcEnter({ selectedItem, setSelectedItem, val, setVal, setHist }) {
     let handle = selectedItem && Number(val) && "run";
     if (handle == "run") {
       console.log("running");
-      const index = product.findIndex((item) => item.Name === selectedItem);
-      product[index].quantity = Number(val);
+      const index = fetchData.findIndex((item) => item.Name === selectedItem);
+      fetchData[index].quantity = Number(val);
       setSelectedItem("");
       setVal("");
       setHist("");

@@ -21,7 +21,7 @@ export function Main() {
           ? selectedItem.slice(0, 22) + "..."
           : selectedItem}
       </h2>
-      <SearchBar data={product} setSelectedItem={setSelectedItem} />
+      <SearchBar setSelectedItem={setSelectedItem} />
       <div className="stock-body">
         <ItemList
           product={product}
