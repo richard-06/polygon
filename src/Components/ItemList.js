@@ -66,7 +66,9 @@ export function ItemList({ product, selectedItem, setSelectedItem }) {
                     : ""
                 }`}
               >
-                <p className="name">{item.Name}</p>
+                <p className="name">
+                  {selectedItem == item.Name ? item.Name : shortener(item.Name)}
+                </p>
                 <p className="type">
                   {item["Spirit Type"] ? item["Spirit Type"] : "Sprit"}
                 </p>
@@ -81,6 +83,10 @@ export function ItemList({ product, selectedItem, setSelectedItem }) {
       </div>
     </div>
   );
+}
+
+function shortener(str) {
+  return str.length > 25 ? str.slice(0, 22) + "..." : str;
 }
 
 function ButtonsItemList() {

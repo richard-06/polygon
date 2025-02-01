@@ -15,7 +15,12 @@ export function Main() {
 
   return (
     <div className="main">
-      <h2> Stock-Take {selectedItem}</h2>
+      <h2>
+        Stock-Take:
+        {selectedItem.length > 25
+          ? selectedItem.slice(0, 22) + "..."
+          : selectedItem}
+      </h2>
       <SearchBar data={product} setSelectedItem={setSelectedItem} />
       <div className="stock-body">
         <ItemList
