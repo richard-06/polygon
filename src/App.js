@@ -8,9 +8,9 @@ import TestLanding from "./test-landing";
 export default function App() {
   return (
     <div className="app">
-      <NavBar />
-      <Main />
-      {/* <TestLanding /> */}
+      {/* <NavBar /> */}
+      {/* <Main /> */}
+      <TestLanding />
 
       {/* <Calculator /> */}
       {/* <ScrollableList /> */}

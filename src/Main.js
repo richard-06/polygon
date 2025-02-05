@@ -12,6 +12,7 @@ import SpreadsheetReader from "./DataHandling/SpreadSheetReader";
 
 export function Main() {
   const [selectedItem, setSelectedItem] = useState("");
+  const [data, setData] = useState([]);
 
   return (
     <div className="main">
@@ -27,9 +28,13 @@ export function Main() {
           product={product}
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
+          data={data}
+          setData={setData}
         />
 
         <SideBar
+          data={data}
+          setData={setData}
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
         />
@@ -38,12 +43,17 @@ export function Main() {
   );
 }
 
-function SideBar({ selectedItem, setSelectedItem }) {
+function SideBar({ selectedItem, setSelectedItem, data, setData }) {
   return (
     <div className="side-bar">
       <div className="side-nav-top">d</div>
 
-      <Calc selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
+      <Calc
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+        data={data}
+        setData={setData}
+      />
     </div>
   );
 }

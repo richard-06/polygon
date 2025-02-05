@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { fetchData, product } from "../DataHandling/data";
 
-export function Calc({ selectedItem, setSelectedItem }) {
+export function Calc({ selectedItem, setSelectedItem, data, setData }) {
   const [val, setVal] = useState("");
   const [hist, setHist] = useState("");
 
@@ -57,6 +57,8 @@ export function Calc({ selectedItem, setSelectedItem }) {
             setSelectedItem={setSelectedItem}
             setVal={setVal}
             setHist={setHist}
+            data={data}
+            setData={setData}
           />
         </div>
       </div>
@@ -64,13 +66,22 @@ export function Calc({ selectedItem, setSelectedItem }) {
   );
 }
 
-function CalcEnter({ selectedItem, setSelectedItem, val, setVal, setHist }) {
+function CalcEnter({
+  selectedItem,
+  setSelectedItem,
+  val,
+  setVal,
+  setHist,
+  data,
+  setData,
+}) {
   function handleEnter() {
     let handle = selectedItem && Number(val) && "run";
     if (handle == "run") {
       console.log("running");
-      const index = fetchData.findIndex((item) => item.Name === selectedItem);
-      fetchData[index].quantity = Number(val);
+      const index = data.findIndex((item) => item.Name === selectedItem);
+      console.log(index);
+      data[index].quantity = Number(val);
       setSelectedItem("");
       setVal("");
       setHist("");

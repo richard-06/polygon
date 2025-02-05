@@ -13,6 +13,48 @@
   text-align: center;
 }
 
+.floating-cont {
+  opacity: 0.4;
+  /* height: 68.7%;
+  width: 67%; */
+  height: 100vh;
+  width: 100%;
+  border: solid 1px rgb(220, 219, 221);
+  border-radius: 0 0 10px 10px;
+  background-color: rgb(28, 27, 27);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.floating-cont-box {
+  height: 30%;
+  width: 30%;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.floating-cont-text {
+  font-size: 1.3rem;
+  padding-bottom: 40px;
+}
+
+.floating-cont-button {
+  border: solid 1px rgb(173, 173, 173);
+  background-color: white;
+  width: 90px;
+  font-size: 1.3rem;
+  padding: 5px 10px;
+  margin: 0 20px;
+}
 .bar-buttons {
   height: 5%;
   margin-bottom: 6px;
