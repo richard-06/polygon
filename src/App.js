@@ -6,11 +6,20 @@ import { Calc } from "./Components/Calc";
 import TestLanding from "./test-landing";
 
 export default function App() {
+  const [dev, setDev] = useState(false);
   return (
     <div className="app">
+      <div
+        className="DevMode"
+        onClick={() => {
+          setDev(true);
+        }}
+      >
+        Dev Mode
+      </div>
       {/* <NavBar /> */}
-      {/* <Main /> */}
-      <TestLanding />
+
+      {dev ? <TestLanding setDev={setDev} /> : <Main />}
 
       {/* <Calculator /> */}
       {/* <ScrollableList /> */}

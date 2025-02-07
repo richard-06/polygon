@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { fetchData } from "../DataHandling/data";
+import { Dropdown } from "antd";
 
 export function ItemList({
   product,
@@ -72,9 +73,11 @@ export function ItemList({
   return (
     <div className="item-list-all">
       <ButtonsItemList modifyData={eraseAndFetchData} />
+      {/* Column Headings */}
       <div className="item-title">
         <p className="name-custom ">Product Name</p>
         <p className="type">Category</p>
+        <p className="type">Sub Category</p>
         <p className="unit-custom">Unit</p>
         <p className="quantity-custom">Quantity</p>
       </div>
@@ -100,8 +103,9 @@ export function ItemList({
                 <p className="name">
                   {selectedItem == item.Name ? item.Name : shortener(item.Name)}
                 </p>
+                <p className="type">{item["Type"] ? item["Type"] : "Spirit"}</p>
                 <p className="type">
-                  {item["Spirit Type"] ? item["Spirit Type"] : "Spirit"}
+                  {item["SubType"] ? item["SubType"] : "Spirit"}
                 </p>
                 <p className="unit">Bottle</p>
                 <p className="quantity">
