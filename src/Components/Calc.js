@@ -25,7 +25,9 @@ export function Calc({ selectedItem, setSelectedItem, data, setData }) {
           </div>
         </div>
         <div className="row-buttons">
-          <div className="calc-button">AC</div>
+          <div className="calc-button" onClick={() => setVal(0)}>
+            AC
+          </div>
           <CalcButtonPlus val="÷" setVal={setVal} />
           <CalcButtonPlus val="x" setVal={setVal} />
           <CalcButtonDel val="DEL" setVal={setVal} />
@@ -76,7 +78,9 @@ function CalcEnter({
   setData,
 }) {
   function handleEnter() {
-    let handle = selectedItem && Number(val) && "run";
+    let handle =
+      selectedItem && Number(val) == 0 ? "run" : Number(val) && "run";
+
     if (handle == "run") {
       console.log("running");
       const index = data.findIndex((item) => item.Name === selectedItem);
@@ -91,7 +95,11 @@ function CalcEnter({
     <div
       onClick={handleEnter}
       className={`calc-button-enter ${
-        selectedItem && Number(val) ? "calc-button-enter-active" : ""
+        selectedItem && Number(val) == 0
+          ? "calc-button-enter-active"
+          : Number(val)
+          ? "calc-button-enter-active"
+          : ""
       }`}
     >
       ENTER

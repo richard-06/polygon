@@ -1,5 +1,12 @@
 // import { async } from "@firebase/util";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  setDoc,
+  doc,
+} from "firebase/firestore";
 import app from "../firebase";
 
 export const fetchData = async () => {
@@ -28,6 +35,34 @@ export const fetchData = async () => {
     return ["error fetching data"];
   }
 };
+
+export async function saveData(data) {
+  // function saves the data in firebase with the current date
+  const db = getFirestore(app);
+  const date = new Date(Date.now());
+  const formatted = date.toLocaleDateString("en-GB").split("/").join("-");
+
+  data.map(async (data, index) => {
+    try {
+      const docRef = await doc(
+        db,
+        "Polygon",
+        "StockTake",
+        formatted,
+        data["Name"]
+      );
+      await setDoc(docRef, {
+        Name: data["Name"],
+        Type: data["Type"],
+        SubType: data["SubType"],
+        Quantity: data["quantity"] || 0,
+      });
+      console.log("Document written with ID:", docRef.id);
+    } catch (error) {
+      console.error("Error adding document:", error);
+    }
+  });
+}
 
 export const product = [
   // {

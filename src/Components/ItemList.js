@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { fetchData } from "../DataHandling/data";
-import { Dropdown } from "antd";
+import { Space, Button } from "antd";
+import { ButtonsItemList } from "./ButtonsItemList";
 
 export function ItemList({
   product,
@@ -11,6 +12,7 @@ export function ItemList({
 }) {
   let temp = true;
   const [ind, setIndex] = useState(0);
+  const [type, setType] = useState("Type");
 
   console.log(product, "From Itemlist");
 
@@ -70,9 +72,23 @@ export function ItemList({
     if (selectedItem !== "") handleSearch();
   }, [selectedItem]);
 
+  const sortedData = data.sort((a, b) => {
+    if (a.Type === b.Type) {
+      return (a.SubType || "").localeCompare(b.SubType || "");
+    }
+    return a.Type.localeCompare(b.Type);
+  });
+
+  setData(sortedData);
+
   return (
     <div className="item-list-all">
-      <ButtonsItemList modifyData={eraseAndFetchData} />
+      <ButtonsItemList
+        modifyData={eraseAndFetchData}
+        data={data}
+        type={type}
+        setType={setType}
+      />
       {/* Column Headings */}
       <div className="item-title">
         <p className="name-custom ">Product Name</p>
@@ -86,12 +102,13 @@ export function ItemList({
         <ul className="content-list">
           {data.map((item, i) => {
             temp = !temp;
-            return (
-              <li
-                onClick={() => setSelectedItem(item.Name)}
-                ref={itemRefs.current[i]}
-                key={i}
-                className={`custom-list ${temp ? "color-adder" : ""}
+            if (item.Type == type || type == "Type")
+              return (
+                <li
+                  onClick={() => setSelectedItem(item.Name)}
+                  ref={itemRefs.current[i]}
+                  key={i}
+                  className={`custom-list ${temp ? "color-adder" : ""}
                  
                 ${
                   selectedItem &&
@@ -99,20 +116,24 @@ export function ItemList({
                     ? "selected-list-item"
                     : ""
                 }`}
-              >
-                <p className="name">
-                  {selectedItem == item.Name ? item.Name : shortener(item.Name)}
-                </p>
-                <p className="type">{item["Type"] ? item["Type"] : "Spirit"}</p>
-                <p className="type">
-                  {item["SubType"] ? item["SubType"] : "Spirit"}
-                </p>
-                <p className="unit">Bottle</p>
-                <p className="quantity">
-                  {item.quantity ? item.quantity : "-"}
-                </p>
-              </li>
-            );
+                >
+                  <p className="name">
+                    {selectedItem == item.Name
+                      ? item.Name
+                      : shortener(item.Name)}
+                  </p>
+                  <p className="type">
+                    {item["Type"] ? item["Type"] : "Spirit"}
+                  </p>
+                  <p className="type">
+                    {item["SubType"] ? item["SubType"] : "Spirit"}
+                  </p>
+                  <p className="unit">Bottle</p>
+                  <p className="quantity">
+                    {item.quantity ? item.quantity : "-"}
+                  </p>
+                </li>
+              );
           })}
         </ul>
       </div>
@@ -124,38 +145,7 @@ function shortener(str) {
   return str?.length > 25 ? str.slice(0, 22) + "..." : str;
 }
 
-function ButtonsItemList({ modifyData }) {
-  const [disrupt, setDisrupt] = useState(false);
-
-  return (
-    <div className="bar-buttons">
-      {disrupt ? (
-        <Disrupt
-          setDisrupt={setDisrupt}
-          messsage={"Confirm Reset?"}
-          setAnswer={modifyData}
-        />
-      ) : (
-        <></>
-      )}
-      <div className="space-buttons"></div>
-      <div
-        className="bar-buttons-ind"
-        onClick={() => {
-          setDisrupt(true);
-        }}
-      >
-        Reset
-      </div>
-      <div style={{ color: "rgb(138, 138, 138)" }}>{`Floor`}</div>
-      <div className="bar-buttons-ind " style={{ marginRight: 0 }}>{`<`}</div>
-      <div className="bar-buttons-ind">{`>`}</div>
-      {/* <div className="bar-buttons-ind">RESET</div> */}
-    </div>
-  );
-}
-
-function Disrupt({ messsage, setDisrupt, setAnswer }) {
+export function Disrupt({ messsage, setDisrupt, setAnswer }) {
   return (
     <>
       <div className="floating-cont"></div>
@@ -164,21 +154,23 @@ function Disrupt({ messsage, setDisrupt, setAnswer }) {
           {messsage ? messsage : "no data received"}
         </div>
         <div>
-          <button
-            className="floating-cont-button"
-            onClick={() => {
-              setDisrupt(false);
-              setAnswer();
-            }}
-          >
-            Yes
-          </button>
-          <button
-            className="floating-cont-button"
-            onClick={() => setDisrupt(false)}
-          >
-            Cancel
-          </button>
+          <Space>
+            <Button
+              className="floating-cont-button"
+              onClick={() => {
+                setDisrupt(false);
+                setAnswer();
+              }}
+            >
+              Yes
+            </Button>
+            <Button
+              className="floating-cont-button"
+              onClick={() => setDisrupt(false)}
+            >
+              Cancel
+            </Button>
+          </Space>
         </div>
       </div>
     </>

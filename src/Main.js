@@ -17,7 +17,7 @@ export function Main() {
   return (
     <div className="main">
       <h2>
-        Stock-Take:
+        Stock-Take
         {selectedItem.length > 25
           ? selectedItem.slice(0, 22) + "..."
           : selectedItem}
@@ -44,9 +44,12 @@ export function Main() {
 }
 
 function SideBar({ selectedItem, setSelectedItem, data, setData }) {
+  const date = new Date(Date.now());
+  const formatted = date.toLocaleDateString("en-GB").split("/").join("-");
+  console.log(formatted); // Output: "13-02-2024"
   return (
     <div className="side-bar">
-      <div className="side-nav-top">d</div>
+      <div className="side-nav-top"> Date: {formatted}</div>
 
       <Calc
         selectedItem={selectedItem}
