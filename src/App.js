@@ -2,24 +2,29 @@ import { Main } from "./Main";
 import SpreadsheetReader from "./DataHandling/SpreadSheetReader";
 import React, { useEffect, useRef, useState } from "react";
 import "./STYLE/StockSheet/calc.css";
+import "./STYLE/StockSheet/ManageItems.css";
+import "./STYLE/StockSheet/StockTakeHist.css";
 import { Calc } from "./Components/Calc";
 import TestLanding from "./test-landing";
+import { MenuOutlined } from "@ant-design/icons";
+import { Dropdown, Space, Button, Empty } from "antd";
+import NavBar from "./Components/NavBar";
+import { StockTakeHist } from "./Components/StockTakeHist";
+import { ManageItems } from "./Components/ManageItems";
 
 export default function App() {
   const [dev, setDev] = useState(false);
+  const [page, setPage] = useState("StockTake");
   return (
     <div className="app">
-      <div
-        className="DevMode"
-        onClick={() => {
-          setDev(true);
-        }}
-      >
-        Dev Mode
-      </div>
-      {/* <NavBar /> */}
+      <div className="hor-nav"></div>
+      <NavBar setPage={setPage} page={page} />
 
-      {dev ? <TestLanding setDev={setDev} /> : <Main />}
+      {/* {dev ? <TestLanding setDev={setDev} /> : <Main setDev={setDev} />} */}
+
+      {page == "StockTake" ? <Main /> : ""}
+      {page == "PrevData" ? <StockTakeHist /> : ""}
+      {page == "EditItems" ? <ManageItems /> : ""}
 
       {/* <Calculator /> */}
       {/* <ScrollableList /> */}
@@ -27,11 +32,6 @@ export default function App() {
     </div>
   );
 }
-
-function NavBar() {
-  return <div className="navBar">navBar</div>;
-}
-
 //------
 
 function ScrollableList() {

@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { saveData } from "../DataHandling/data";
+import {
+  checkFormattedDateExists,
+  CheckSTExists,
+  fetchData2,
+  saveData,
+} from "../DataHandling/data";
 import {
   DownOutlined,
   RedoOutlined,
@@ -9,108 +14,141 @@ import {
 import { Dropdown, Space, Button } from "antd";
 import { Disrupt } from "./ItemList";
 
-export function ButtonsItemList({ modifyData, data, type, setType }) {
+export function ButtonsItemList({
+  modifyData,
+  data,
+  type,
+  setType,
+  subType,
+  setSubType,
+}) {
   let uniqueTypes = [...new Set(data.map((item) => item["Type"]))];
-  let uniqueSubTypes = [...new Set(data.map((item) => item["SubType"]))];
-  // console.log(uniqueSubTypes);
+
   const [disrupt, setDisrupt] = useState(false);
   const [disruptSave, setDisruptSave] = useState(false);
+  const [disruptOverride, setDisruptOverride] = useState(false);
 
-  const items = uniqueTypes.map((item, index) => {
-    return { label: item, key: index };
-  });
+  // Generate Type dropdown items
+  const typeItems = uniqueTypes.map((item, index) => ({
+    label: item,
+    key: index,
+  }));
 
-  items.push(
-    {
-      type: "divider",
-    },
-    {
-      label: "-none-",
-      key: "3",
+  typeItems.push({ type: "divider" }, { label: "-none-", key: "none" });
+
+  // Handle Type selection
+  const handleTypeClick = (e) => {
+    if (e.key === "none") {
+      setType("Type");
+      setSubType("Sub Type"); // Reset SubType
+    } else {
+      setType(uniqueTypes[e.key]);
+      setSubType("Sub Type"); // Reset SubType when Type changes
     }
-  );
+  };
 
-  const handleMenuClick = (e) => {
-    console.log(e.key);
-    uniqueTypes[e.key] ? setType(uniqueTypes[e.key]) : setType("Type");
+  // Get unique SubTypes based on selected Type
+  const getSubTypes = () => {
+    let subTypes = [
+      ...new Set(
+        data
+          .filter((item) => item["Type"] === type)
+          .map((item) => item["SubType"])
+      ),
+    ];
+
+    let temp = subTypes.map((item, index) => ({
+      label: item || "No SubType",
+      key: index,
+    }));
+    temp.push({ type: "divider" }, { label: "-None-", key: "none" });
+    return temp;
+  };
+
+  // Handle SubType selection
+  const handleSubTypeClick = (e) => {
+    const subTypesList = getSubTypes();
+    setSubType(subTypesList[e.key]?.label || "Sub Type");
   };
 
   return (
     <div className="bar-buttons">
-      {disrupt ? (
+      {disrupt && (
         <Disrupt
           setDisrupt={setDisrupt}
           messsage={"Confirm Reset?"}
           setAnswer={modifyData}
         />
-      ) : (
-        <></>
       )}
-      {disruptSave ? (
+
+      {disruptOverride && (
+        <Disrupt
+          setDisrupt={setDisruptOverride}
+          messsage={"Override Previous Data"}
+          setAnswer={() => saveData(data)}
+        />
+      )}
+
+      {disruptSave && (
         <Disrupt
           setDisrupt={setDisruptSave}
           messsage={"Save Data?"}
           setAnswer={() => saveData(data)}
         />
-      ) : (
-        <></>
       )}
       <div className="space-buttons"></div>
       <Space>
-        <div style={{ color: "rgb(138, 138, 138)" }}>Filter </div>
+        <div className="button-dark">Filter </div>
+
+        {/* Type Filter */}
         <Dropdown
-          menu={{ items, onClick: handleMenuClick }}
+          menu={{ items: typeItems, onClick: handleTypeClick }}
           trigger={["click"]}
         >
-          <Button onClick={(e) => e.preventDefault()}>
+          <Button className="button-dark">
             <Space>
               {type}
               <DownOutlined />
             </Space>
           </Button>
         </Dropdown>
+
+        {/* Sub Type Filter */}
         <Dropdown
-          menu={{
-            items,
-          }}
+          menu={{ items: getSubTypes(), onClick: handleSubTypeClick }}
           trigger={["click"]}
+          disabled={type === "Type"}
         >
-          <Button onClick={(e) => e.preventDefault()}>
+          <Button className="button-dark" disabled={type === "Type"}>
             <Space>
-              Sub Type
+              {subType}
               <DownOutlined />
             </Space>
           </Button>
         </Dropdown>
-        <Button
-          onClick={() => {
-            setDisrupt(true);
-          }}
-        >
-          RESET
-          <RedoOutlined />
+
+        <Button className="button-dark" onClick={() => setDisrupt(true)}>
+          RESET <RedoOutlined />
         </Button>
 
-        <Button icon={<CaretLeftOutlined />}></Button>
-        <Button icon={<CaretRightOutlined />}></Button>
+        <Button className="button-dark" icon={<CaretLeftOutlined />} />
+        <Button className="button-dark" icon={<CaretRightOutlined />} />
         <Button
+          className="button-dark"
           onClick={() => {
-            let temp = [];
-            data.map((item) => {
-              if (item["quantity"]) {
-                temp.push(item["Name"]);
-              }
-              console.log(temp);
-            });
+            let temp = data
+              .filter((item) => item["quantity"])
+              .map((item) => item["Name"]);
+            console.log(temp);
           }}
         >
           Print Data
         </Button>
         <Button
           style={{ backgroundColor: "var(--primary-color)", color: "white" }}
-          onClick={() => {
-            setDisruptSave(true);
-          }}
+          onClick={() =>
+            CheckSTExists ? setDisruptOverride(true) : setDisruptSave(true)
+          }
         >
           SAVE
         </Button>

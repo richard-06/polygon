@@ -7,10 +7,11 @@ import {
   getDocs,
   doc,
   setDoc,
+  getDoc,
 } from "firebase/firestore";
 import { fetchData } from "./DataHandling/data";
 import app from "./firebase";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function TestLanding({ setDev }) {
   const db = getFirestore(app);
@@ -178,6 +179,39 @@ export default function TestLanding({ setDev }) {
       };
     }
   };
+
+  //Function to list all collections in Firestore
+  async function listCollections() {
+    const collectionsList = [];
+    const snapshot = await getDocs(collection(db, "Polygon"));
+
+    snapshot.forEach((doc) => {
+      // Check if it’s a collection, not a document
+      collectionsList.push(doc.id);
+    });
+
+    console.log("Collections:", collectionsList);
+  }
+
+  // Call the function
+  listCollections();
+
+  // Reference to the document you want to fetch
+  const docRef = doc(db, "Polygon", "StockTake");
+
+  // Fetch the document
+  async function fetchDocument() {
+    const docRef = doc(db, "Polygon", "StockTake");
+    const docSnap = await getDoc(docRef);
+
+    console.log("Document data:", ...docSnap.data()["StockTake Date"]);
+
+    return docSnap.data()["StockTake Date"];
+  }
+
+  // Call the function
+  fetchDocument();
+
   return (
     <>
       <div onClick={() => setDev(false)} className="DevMode">
@@ -222,6 +256,11 @@ export default function TestLanding({ setDev }) {
           <li key={index}>{item}</li>
         ))}
       </ul>
+
+      <div className="Dev-stocktake">
+        List of StockTake
+        <ul></ul>
+      </div>
     </>
   );
 }

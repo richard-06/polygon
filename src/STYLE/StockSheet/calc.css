@@ -1,19 +1,26 @@
 .calc-cont {
-  flex: 4;
+  /* flex: 4; */
   width: 100%;
+  height: 70%;
 }
 
 .calc-row {
   display: flex;
   height: 100%;
   flex-direction: column;
-  border: solid 1px #ccc;
-  border-radius: 0 0 10px 10px;
+  border: solid 1px var(--border-d);
+  border-radius: 5px;
+  /* border-radius: 0 0 10px 10px; */
+  /* border-radius: 5px; */
 
   /* padding: 1%; */
 }
 
 .result-bar {
+  background-color: var(--border-d);
+  color: var(--text-l);
+  /* width: 93%; */
+  /* background-color: rgb(228, 30, 30); */
   flex: 1;
   /* border-bottom: solid 1px #ccc; */
   margin-bottom: 1%;
@@ -31,43 +38,63 @@
 
 .result-hist {
   padding-top: 10px;
-  padding-left: 20px;
-  font-size: 2rem;
-  color: rgb(129, 129, 129);
+  /* background-color: aqua; */
+  margin: 0 auto;
+  /* padding-left: 20px;
+  padding-right: 20px; */
+  font-size: 1.7rem;
+  color: var(--border-m);
   text-align: start;
+  width: 270px;
+  overflow-x: auto;
+  white-space: nowrap;
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge */
+  /* background-color: rgb(220, 220, 220); */
+  /* flex: 3; */
 }
 .result-val {
+  /* flex: 7; */
+  margin: 0 auto;
+  /* background-color: aqua; */
+  width: 270px;
   /* background-color: aqua; */
   text-align: end;
-  padding-right: 20px;
+  /* padding-right: 10px; */
   font-weight: 60;
   overflow-x: auto; /* Enable horizontal scrolling if content overflows */
   white-space: nowrap; /* Prevent text from wrapping to the next line */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge */
 }
 .row-buttons {
   padding: 0 1%;
   flex: 0.6;
   /* border: solid 1px; */
   display: flex;
+  background-color: var(--l-dark);
+  /* background-color: antiquewhite; */
+  border-radius: 5px;
 }
 
 .calc-button {
   flex: 1;
   /* border: solid 1px; */
-  background-color: rgb(241, 241, 241);
+  background-color: var(--m-dark);
   margin: 3% 3%;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
-  color: rgb(98, 98, 98);
+  color: var(--text-l);
 }
 .calc-button-enter {
   flex: 2;
-  /* border: solid 1px #ccc; */
+
   margin: 10px;
 
   border-radius: 10px;
@@ -76,13 +103,10 @@
   align-items: center;
   font-size: 1.5rem;
   font-weight: 600;
-
-  /* background-color: rgb(241, 241, 241);
-  color: rgb(98, 98, 98);
-  opacity: 0.5; */
+  color: var(--text-l);
 }
 
 .calc-button-enter-active {
   background-color: var(--primary-color);
-  color: white;
+  color: var(--text-l);
 }

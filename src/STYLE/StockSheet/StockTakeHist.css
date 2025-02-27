@@ -1,0 +1,117 @@
+.STHist {
+  flex: 9;
+
+  /* margin-left: 20px/; */
+  padding: 0 20px;
+  flex: 9;
+  height: 100vh;
+  background-color: var(--m-dark);
+
+  /* opacity: 0.9; */
+}
+
+.STBody {
+  padding-top: 20px;
+  display: flex;
+  height: 89%;
+}
+
+.STView {
+  margin-right: 20px;
+  flex: 7.5;
+  background-color: var(--m-dark);
+}
+
+.STPrev {
+  /* padding: 9px; */
+  border: 1px solid;
+  flex: 2.5;
+  background-color: var(--l-dark);
+  border-radius: 5px;
+  /* overflow-y: auto; */
+}
+.STPrev-list {
+  height: 94%;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.STPrev-title {
+  height: 6%;
+  background-color: rgb(18, 18, 18);
+  /* text-align: center; */
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-l);
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+}
+.StockTakeCard {
+  border-radius: 5px;
+  padding: 7px;
+  margin: 15px 12px 15px 10px;
+  color: var(--l-text);
+  background-color: var(--m-dark);
+  border: solid 1px rgb(19, 19, 19);
+  display: flex;
+}
+
+.STCAnimate {
+  /* background-color: aliceblue; */
+  /* color: rgb(255, 237, 237); */
+  background-color: var(--d-dark);
+  transform: scale(1.05);
+}
+
+.STCAnimate-CBar {
+  border: 2px solid rgb(0, 255, 17);
+  margin-right: 8px;
+  border-radius: 10px;
+}
+
+.StockTakeCard-CBar {
+  border: 2px solid rgb(232, 0, 0);
+  margin-right: 8px;
+  border-radius: 10px;
+}
+.STTitle {
+  display: flex;
+  justify-content: space-between;
+}
+.STCard {
+  padding-top: 35px;
+  color: var(--l-text);
+}
+.STButtonList {
+  height: 5%;
+  /* margin-bottom: 6px; */
+  margin: 4px 0;
+  /* background-color: aquamarine; */
+  display: flex;
+  /* text-align: center; */
+  justify-content: right;
+  align-items: center;
+  color: var(--text-l);
+}
+
+.STMonth-hist {
+  margin: 10px 12px 10px 10px;
+  color: var(--text-l);
+}
+.STButton {
+  background-color: var(--m-dark);
+  color: var(--l-text);
+  /* margin: 0 10px; */
+  border: 1px solid var(--m-dark);
+  flex: 1;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.StockTakeCard-title {
+  font-size: 1rem;
+}
+.StockTakeCard-body {
+  margin-top: 10px;
+  font-size: 0.8rem;
+}

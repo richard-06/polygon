@@ -4,17 +4,18 @@ import { Space, Button } from "antd";
 import { ButtonsItemList } from "./ButtonsItemList";
 
 export function ItemList({
-  product,
   selectedItem,
   setSelectedItem,
   data,
   setData,
+  setVal,
+  type,
+  setType,
+  subType,
+  setSubType,
 }) {
   let temp = true;
   const [ind, setIndex] = useState(0);
-  const [type, setType] = useState("Type");
-
-  console.log(product, "From Itemlist");
 
   function eraseAndFetchData() {
     setData([]);
@@ -88,9 +89,11 @@ export function ItemList({
         data={data}
         type={type}
         setType={setType}
+        subType={subType}
+        setSubType={setSubType}
       />
       {/* Column Headings */}
-      <div className="item-title">
+      <div className=" item-title">
         <p className="name-custom ">Product Name</p>
         <p className="type">Category</p>
         <p className="type">Sub Category</p>
@@ -103,12 +106,20 @@ export function ItemList({
           {data.map((item, i) => {
             temp = !temp;
             if (item.Type == type || type == "Type")
-              return (
-                <li
-                  onClick={() => setSelectedItem(item.Name)}
-                  ref={itemRefs.current[i]}
-                  key={i}
-                  className={`custom-list ${temp ? "color-adder" : ""}
+              if (item.SubType == subType || subType == "Sub Type")
+                return (
+                  <li
+                    onClick={() => {
+                      setVal((val) => {
+                        if (item.quantity) return String(item.quantity);
+                        else return "";
+                      });
+
+                      setSelectedItem(item.Name);
+                    }}
+                    ref={itemRefs.current[i]}
+                    key={i}
+                    className={`custom-list ${temp ? "color-adder" : ""}
                  
                 ${
                   selectedItem &&
@@ -116,24 +127,24 @@ export function ItemList({
                     ? "selected-list-item"
                     : ""
                 }`}
-                >
-                  <p className="name">
-                    {selectedItem == item.Name
-                      ? item.Name
-                      : shortener(item.Name)}
-                  </p>
-                  <p className="type">
-                    {item["Type"] ? item["Type"] : "Spirit"}
-                  </p>
-                  <p className="type">
-                    {item["SubType"] ? item["SubType"] : "Spirit"}
-                  </p>
-                  <p className="unit">Bottle</p>
-                  <p className="quantity">
-                    {item.quantity ? item.quantity : "-"}
-                  </p>
-                </li>
-              );
+                  >
+                    <p className="name">
+                      {selectedItem == item.Name
+                        ? item.Name
+                        : shortener(item.Name)}
+                    </p>
+                    <p className="type">
+                      {item["Type"] ? item["Type"] : "Spirit"}
+                    </p>
+                    <p className="type">
+                      {item["SubType"] ? item["SubType"] : "Spirit"}
+                    </p>
+                    <p className="unit">Bottle</p>
+                    <p className="quantity">
+                      {item.quantity ? item.quantity : "-"}
+                    </p>
+                  </li>
+                );
           })}
         </ul>
       </div>

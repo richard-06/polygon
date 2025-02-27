@@ -11,7 +11,18 @@ body {
   overflow: hidden;
 }
 :root {
-  --primary-color: #3498db; /* Define your color here */
+  --primary-color: #d20065;
+
+  --text-l: white;
+  --text-m: rgb(170, 170, 170);
+  --text-d: rgb(0, 0, 0);
+  --border-m: #ccc;
+  --border-d: rgb(64, 64, 64);
+  /* stockhist */
+  --l-dark: rgb(34, 34, 34);
+  --m-dark: rgb(18, 18, 18);
+  --d-dark: black;
+  --l-text: white;
 }
 
 .app {
@@ -21,12 +32,16 @@ body {
 
   font-family: "Geist Mono", monospace;
   font-weight: 300;
+  background-color: var(--m-dark);
 }
 
-.navBar {
-  flex: 0.5;
-  color: rgb(255, 255, 255);
-  background-color: var(--primary-color);
+.hor-nav {
+  background-color: var(--l-dark);
+  height: 20px;
+  width: 100%;
+  position: absolute;
+  z-index: 30;
+  border-bottom: 1px solid;
 }
 
 .main {
@@ -39,30 +54,46 @@ body {
   flex: 9;
   height: 100vh;
 
-  opacity: 0.9;
+  /* opacity: 0.9; */
 }
 
 h2 {
-  color: rgb(54, 54, 54);
-  padding-top: 10px;
+  letter-spacing: 3px;
+  color: var(--text-l);
+  padding-top: 35px;
   /* height: 5%; */
   opacity: 0.9;
   font-size: 2rem;
 }
 
+.stocktake-title {
+  margin: 15px;
+  margin-top: 0;
+  margin-left: 0;
+}
+
 .DevMode {
   position: absolute;
-  margin: 10px;
+  margin: 20px;
   width: 80px;
   background-color: yellow;
   top: 5%;
-  left: 92%;
+  left: 82%;
   transform: translate(-50%, -50%);
   padding: 10px;
   z-index: 10;
 
   border-radius: 10px;
   border: solid 1px black;
+}
+.Dev-stocktake {
+  position: absolute;
+  width: 20%;
+  height: 50%;
+  background-color: rgb(254, 229, 65);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .test {
   padding: 20px;

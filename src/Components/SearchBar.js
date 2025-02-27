@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import { fetchData } from "../DataHandling/data"; // Import fetchData function
 
-export function SearchBar({ placeholder = "Search...", setSelectedItem }) {
+export function SearchBar({
+  placeholder = "Search...",
+  setSelectedItem,
+  setType,
+  setSubType,
+}) {
   const [data, setData] = useState([]); // Store fetched data
   const [query, setQuery] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
@@ -61,8 +66,11 @@ export function SearchBar({ placeholder = "Search...", setSelectedItem }) {
           {filteredResults.map((result, index) => (
             <li
               onClick={() => {
+                setType("Type");
+                setSubType("Sub Type");
                 setSelectedItem(result);
                 setFilteredResults([]);
+                setQuery("");
               }}
               key={index}
               className="result-item"

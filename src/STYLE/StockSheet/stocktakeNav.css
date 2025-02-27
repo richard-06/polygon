@@ -1,0 +1,32 @@
+/* Might need to delete all this */
+.the-line {
+  border: 1px solid;
+  border-radius: 100px;
+  color: grey;
+}
+
+.stock-nav {
+  margin-top: 20px;
+  width: 20%;
+  background-color: aqua;
+  color: aquamarine;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 10;
+}
+
+.stock-nav-button {
+  color: grey;
+  margin-top: 10px;
+  /* padding: 5px 40px 1px 5px; */
+  font-size: 1.2rem;
+}
+
+.stock-nav-button-active {
+  color: rgb(0, 0, 0);
+  /* padding: 5px 40px 1px 5px; */
+  font-size: 1.2rem;
+  /* background-color: var(--primary-color); */
+}

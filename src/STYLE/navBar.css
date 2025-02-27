@@ -1,0 +1,127 @@
+.navBar {
+  /* background-color: aqua; */
+  z-index: 11;
+  flex: 0.4;
+  color: rgb(0, 0, 0);
+  /* background-color: var(--primary-color); */
+  background-color: var(--d-dark);
+  /* color: aliceblue */
+  text-align: center;
+}
+
+.navBarAdd {
+  z-index: 10;
+  background-color: red;
+  width: 100%;
+  height: 100%;
+}
+.nav-bar-active {
+  width: 20%;
+  height: 100%;
+  position: absolute;
+  z-index: 10;
+
+  color: rgb(0, 0, 0);
+  /* position: absolute; */
+  /* background-color: var(--primary-color); */
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  transition: 0.2s ease-in-out;
+  border-right: 1px solid rgb(182, 182, 182);
+}
+
+.nav-bar {
+  width: 20%;
+  height: 100%;
+  position: absolute;
+  z-index: 10;
+
+  color: rgb(0, 0, 0);
+  /* position: absolute; */
+  /* background-color: var(--primary-color); */
+  /* background-color: rgb(197, 69, 69); */
+  text-align: center;
+  transition: 0.2s ease-in-out;
+  border-right: 1px solid;
+  transform: translate(-100%, 0);
+
+  /* transform: translate(-22%, 0); */
+}
+
+.nav-menu {
+  left: 0.65%;
+  top: 35px;
+  color: var(--text-l);
+  z-index: 19;
+  position: absolute;
+  font-size: 2.2rem;
+  transition: 0.2s ease-in-out;
+  /* background-color: aqua; */
+}
+
+.logo-name {
+  position: absolute;
+  z-index: 19;
+  left: -40px;
+  top: 12%;
+  transform: rotate(90deg);
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.nav-menu-active {
+  left: 15%;
+  top: 35px;
+  color: black;
+  z-index: 19;
+  position: absolute;
+  font-size: 2.2rem;
+  transition: 0.2s ease-in-out;
+
+  /* background-color: aqua; */
+}
+
+.nbar {
+  text-align: left;
+  padding: 35px 0 0 0;
+  width: 20%;
+}
+
+.divider {
+  border: 1px solid;
+  margin: 10px 10px;
+  color: rgb(236, 236, 236);
+}
+
+.nav-bar-title {
+  padding-left: 10px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  /* background-color: aqua; */
+}
+.nav-sub-title {
+  padding: 10px 0 20px 10px;
+  font-size: 1.2rem;
+  color: rgb(122, 122, 122);
+}
+.nav-items {
+  padding: 5px 0;
+  padding-left: 10px;
+  margin: 0 12px;
+  margin-bottom: 10px;
+  border-radius: 7px;
+}
+
+.nav-item-select {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.BlackOut {
+  z-index: 1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  transition: 0.1s ease-in-out;
+}

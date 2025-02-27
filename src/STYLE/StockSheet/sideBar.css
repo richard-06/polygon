@@ -3,8 +3,8 @@
   margin-left: 15px;
   flex: 2.5;
   text-align: center;
-  border: solid 1px #ccc;
-  border-radius: 8px 8px;
+  /* border: solid 1px #ccc; */
+  /* border-radius: 8px 8px; */
 
   display: flex;
   align-items: center;
@@ -13,12 +13,30 @@
   flex-direction: column;
 }
 .side-nav-top {
+  /* padding-left: 20%;
+  padding-top: 20px; */
+  text-align: start;
   flex: 1;
   width: 100%;
+  display: flex;
+  flex-direction: column;
   /* width: 265px; */
   /* height: 180px; */
 
   /* background-color: antiquewhite; */
+}
+.side-bar-day {
+  font-size: 24px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.side-bar-date {
+  margin-left: 10px;
+}
+.side-bar-complete {
+  width: 60%;
+  margin-top: 10px;
+  align-self: center;
 }
 
 .calc {

@@ -1,0 +1,199 @@
+.MI {
+  flex: 9;
+  margin-top: 20px;
+  width: 200px;
+  height: 97.5vh;
+  background-color: var(--l-dark);
+  color: var(--text-l);
+  display: flex;
+  flex-direction: column;
+}
+
+.MI-title {
+  line-height: 3.5rem;
+  flex: 3;
+  /* padding: 50px 0 0 50px; */
+  font-size: 4rem;
+  font-weight: 600;
+  /* margin: auto; */
+  /* background-color: aquamarine; */
+  /* text-align: left; */
+  display: grid;
+  place-items: center;
+  padding-left: 5px; /* Centers both horizontally and vertically */
+}
+
+.MI-Card {
+  border-radius: 10px;
+  margin: auto 40px auto 0;
+  padding: 0 0 0 20px;
+  flex: 7;
+  /* background-color: var(--m-dark); */
+  display: flex;
+
+  background: rgba(255, 255, 255, 0.1); /* Transparent White */
+  backdrop-filter: blur(5px); /* Blurred Glass Effect */
+  -webkit-backdrop-filter: blur(10px); /* Safari Support */
+  border-radius: 15px; /* Rounded Corners */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Soft Border */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  /* margin: 50px; */
+}
+
+.MI-AddItems {
+  display: flex;
+  flex: 4;
+  background-image: url("/public/dark-theme.jpg");
+}
+
+.input-dark {
+  width: 270px;
+  /* margin: 0 10px; */
+  margin: 0;
+  background-color: var(--m-dark) !important;
+  color: var(--text-l) !important;
+  border-color: var(--border-l) !important;
+}
+.input-dark:hover {
+  transform: scale(1.01); /* Add a slight zoom effect */
+}
+.input-par {
+  width: 100px;
+}
+
+.MI-Name {
+  /* margin-left: 8px; */
+  /* background-color: antiquewhite; */
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.MI-SubTitle {
+  margin: 30px 0 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  font-size: 1.1rem;
+}
+
+.MI-DropDown {
+  width: 150px;
+  /* justify-content: center !important; */
+}
+.MI-DropDown::placeholder {
+  color: rgb(120, 120, 120);
+  /* justify-content: center !important; */
+}
+
+.MI-Button {
+  margin-left: 25px;
+  padding: 10px 3px;
+  width: 50px;
+  color: aliceblue;
+  background-color: rgb(45, 45, 45);
+  font-size: 3rem;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* border-radius: 0 10px 10px 0; */
+  border: 1px solid rgb(72, 72, 72);
+  /* transform: rotate(90deg); */
+}
+
+.MI-Body {
+  flex: 6;
+  background-color: var(--d-dark);
+  /* display: flex;
+  flex-direction: column; */
+}
+.MI-List {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  overflow-x: scroll;
+}
+.MI-List-Block {
+  /* height: 300px; */
+
+  display: flex;
+}
+
+.MI-List-Block-Title {
+  /* height: 300px; */
+  height: 50px;
+  background-color: var(--m-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.MI-List-Button-List {
+  /* height: 300px; */
+  height: 30px;
+  background-color: var(--m-dark);
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  border-top: 1px solid var(--border-m);
+  padding-right: 40px;
+  padding-top: 10px;
+}
+.MI-List-Item {
+  flex: 1;
+  /* background-color: rgb(0, 125, 234); */
+
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.MI-List-Item-Cust {
+  flex: 1;
+  /* background-color: rgb(0, 125, 234); */
+
+  padding: 10px 0;
+  padding-left: 10px;
+  display: flex;
+  justify-content: left;
+}
+
+.MI-List-Item-Cust-Name {
+  flex: 1;
+  /* background-color: rgb(0, 125, 234); */
+
+  padding: 10px 0;
+  padding-left: 10px;
+  display: flex;
+  justify-content: center;
+}
+.MI-Color-Adder {
+  background-color: var(--m-dark);
+}
+
+.MI-button-dark {
+  background-color: var(--d-dark);
+  color: var(--text-l);
+  border: 1px solid var(--d-dark);
+}
+
+.MI-button-light {
+  background-color: var(--l-dark);
+  color: var(--text-l);
+  border: 1px solid white;
+}
+.MI-No-Hover {
+  padding: 9px 15px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+/* .MI-No-Hover:hover {
+  background-color: inherit !important;
+  color: inherit !important;
+  border-color: inherit !important;
+} */
